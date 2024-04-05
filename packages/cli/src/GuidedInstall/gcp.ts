@@ -13,7 +13,7 @@ export async function GCPSetup(): Promise<EnvConfig> {
     'Ensure you have a GCP Service Account with the permission to start BigQuery jobs and read BigQuery job results. Learn more about GCP Service Accounts here: https://cloud.google.com/docs/authentication/getting-started',
   )
 
-  // does this have to be done separately or can it be part of the .env?
+  // does this have to be done separately or can it be part of the .env.bck?
   await confirmPrompt(
     'Create and download a JSON private file for this Service Account to your local filesystem. Learn more about this authentication method at https://cloud.google.com/docs/authentication/getting-started',
   )

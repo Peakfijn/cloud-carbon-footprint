@@ -23,7 +23,7 @@ import {
 } from '@cloud-carbon-footprint/azure'
 import {
   AWS_EMISSIONS_FACTORS_METRIC_TON_PER_KWH,
-  AWSAccount,
+  AWSAccount, AWSBillingUsageExport,
 } from '@cloud-carbon-footprint/aws'
 import { GCPAccount, getGCPEmissionsFactors } from '@cloud-carbon-footprint/gcp'
 import {
@@ -79,6 +79,15 @@ export default class App {
           AWSEstimatesByRegion.push(estimates)
         }
       }
+      if (AWS?.INCLUDE_USAGE_CSV) {
+        const estimates = await new AWSBillingUsageExport(AWS.INCLUDE_USAGE_CSV).getDataFromCSV(
+          startDate,
+          endDate,
+          grouping,
+        )
+        AWSEstimatesByRegion.push(estimates)
+      }
+
       appLogger.info('Finished AWS Estimations')
     }
 

@@ -61,7 +61,7 @@ jobs:
           root: ~/cloud-carbon-footprint
           paths:
             - packages/client/build/*
-            - packages/client/.env
+            - packages/client/.env.bck
   build-server:
     description: Build Server
     working_directory: ~/cloud-carbon-footprint
@@ -84,7 +84,7 @@ jobs:
           root: ~/cloud-carbon-footprint
           paths:
             - packages/server/dist/*
-            - packages/server/.env
+            - packages/server/.env.bck
   staging-deploy:
     description: Deploy app to gcp staging
     working_directory: ~/cloud-carbon-footprint
