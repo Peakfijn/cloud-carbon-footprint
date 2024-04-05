@@ -19,4 +19,4 @@ services:
       - $HOME/.aws/credentials:/root/.aws/credentials
       - $HOME/.config/gcloud/legacy_credentials/cloud-carbon-footprint@appspot.gserviceaccount.com/adc.json:/root/.config/gcloud/service-account-keys.json
     env_file:
-      - packages/api/.env
+      - packages/api/.env.bck

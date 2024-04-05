@@ -186,7 +186,7 @@ describe('common', () => {
 
   describe('createEnvFile', () => {
     beforeEach(() => {
-      mockResolve.mockReturnValueOnce('/absolute/path/.env')
+      mockResolve.mockReturnValueOnce('/absolute/path/.env.bck')
     })
 
     describe('when the env file already exists', () => {
@@ -205,7 +205,7 @@ describe('common', () => {
           await createEnvFile('../api', { new1: 'value3', prev2: 'value4' })
 
           expect(mockWriteFile).toHaveBeenCalledWith(
-            '/absolute/path/.env',
+            '/absolute/path/.env.bck',
             'prev1=value1\nprev2=value4\nnew1=value3\n',
           )
         })
@@ -233,7 +233,7 @@ describe('common', () => {
         await createEnvFile('../api', { new1: 'value1', new2: 'value2' })
 
         expect(mockWriteFile).toHaveBeenCalledWith(
-          '/absolute/path/.env',
+          '/absolute/path/.env.bck',
           'new1=value1\nnew2=value2\n',
         )
       })

@@ -10,7 +10,7 @@ if [ ! -d $HOME/.docker/secrets ]; then
 fi
 
 # Create dummy secrets entries for all secrets in docker-compose.yml
-# later we fill these entries with values from .env file. Otherwise
+# later we fill these entries with values from .env.bck file. Otherwise
 # docker-compose will complain about missing secrets.
 inside_secrets=0
 while IFS= read -r line; do
@@ -27,7 +27,7 @@ while IFS= read -r line; do
     fi
 done < ../../docker-compose.yml
 
-# Fill secrets with values from .env file
+# Fill secrets with values from .env.bck file
 while read line; do
   # skip commented out variables and lines without '='
   if [[ ! ${line} =~ ^# && "${line}" == *"="* ]]; then

@@ -5,6 +5,8 @@ import fs from 'fs'
 import dotenv from 'dotenv'
 import { AWS_RECOMMENDATIONS_SERVICES } from './RecommendationsService'
 import { AccountDetailsOrIdList } from './Types'
+import * as console from 'console'
+import * as process from 'process'
 
 dotenv.config()
 
@@ -25,6 +27,7 @@ export interface CCFConfig {
     CURRENT_SERVICES?: { key: string; name: string }[]
     CURRENT_REGIONS?: string[]
     RESOURCE_TAG_NAMES?: string[]
+    INCLUDE_USAGE_CSV?: string
     accounts?: AccountDetailsOrIdList
     authentication?: {
       mode: string
@@ -155,6 +158,7 @@ const getEnvVar = (envVar: string): string => {
 const getConfig = (): CCFConfig => ({
   AWS: {
     INCLUDE_ESTIMATES: process.env.AWS_INCLUDE_ESTIMATES !== 'false',
+    INCLUDE_USAGE_CSV: process.env.AWS_INCLUDE_USAGE_CSV || '',
     USE_BILLING_DATA:
       !!process.env.AWS_USE_BILLING_DATA &&
       process.env.AWS_USE_BILLING_DATA !== 'false',
